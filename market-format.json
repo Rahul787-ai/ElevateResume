@@ -1,0 +1,17 @@
+{
+  "scope": "REQUIRED: describe roles, geography, sources, selection method and collection period",
+  "postings": [
+    {
+      "id": "REPLACE_WITH_STABLE_POSTING_ID",
+      "source": "REPLACE_WITH_PUBLISHER",
+      "url": "https://example.invalid/replace-with-original-posting",
+      "collectedAt": "YYYY-MM-DD",
+      "postedAt": null,
+      "title": "REPLACE_WITH_JOB_TITLE",
+      "text": "REPLACE_WITH_VERIFIED_POSTING_TEXT",
+      "verified": false,
+      "verifiedBy": "REPLACE_WITH_ACTUAL_COLLECTOR_IDENTITY_AND_METHOD (identify AI assistance when used)",
+      "verificationNote": "REPLACE_WITH_HOW_ORIGINAL_SOURCE_WAS_CHECKED"
+    }
+  ]
+}

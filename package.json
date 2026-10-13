@@ -1,0 +1,8 @@
+{
+  "name": "elevateresume",
+  "version": "2.0.0",
+  "private": true,
+  "description": "University Web Technologies PBL resume builder",
+  "scripts": { "start": "node server.cjs", "test": "node --test tests/core.test.cjs tests/server.test.cjs tests/market.test.cjs" },
+  "engines": { "node": ">=22" }
+}

@@ -1,0 +1,24 @@
+{
+  "description": "Independent source/excerpt review by Codex (AI-assisted collector), 2026-10-09. These expected skill sets and counts were enumerated from the reviewed role text, not generated with recognize() or market(). Re-review when refreshing the dataset.",
+  "size": 17,
+  "counts": { "React": 16, "JavaScript": 12, "CSS": 13, "HTML": 9, "Git": 5, "Communication": 4, "Testing": 3, "Node.js": 1, "Python": 1, "XML": 1 },
+  "records": {
+    "velorithm:frontend-developer-intern:bangalore": ["HTML", "CSS", "JavaScript", "React"],
+    "skcript:software-engineer-frontend-intern": ["HTML", "CSS", "JavaScript", "React"],
+    "ampliflow:frontend-developer-intern": ["React"],
+    "mentorkhoj:frontend-developer-intern:bangalore": ["CSS", "React"],
+    "kyvo:frontend-engineer:pune": ["HTML", "CSS", "JavaScript", "React"],
+    "genyxlabs:junior-frontend-engineer": ["HTML", "CSS", "JavaScript", "React", "Git", "Testing"],
+    "indshine:nVuzAAj_mE07": ["JavaScript", "React"],
+    "walbrydge:23": ["React", "Communication"],
+    "endeavoritsolution:109349809": ["HTML", "CSS", "JavaScript", "XML", "Communication"],
+    "uplabh:intern-frontend": ["HTML", "CSS", "JavaScript", "React", "Git", "Communication"],
+    "narixlabs:frontend-engineer-junior": ["CSS", "JavaScript", "React"],
+    "growthaxl:junior-frontend-engineer:hyderabad": ["HTML", "CSS", "JavaScript", "React", "Git", "Testing", "Communication"],
+    "montrixtech:MTX-FED-003": ["React"],
+    "strinttechnologies:frontend-developer-intern": ["CSS", "React"],
+    "vestval:react-developer-intern": ["CSS", "JavaScript", "React", "Testing"],
+    "revrag:software-developer-intern-frontend": ["HTML", "CSS", "JavaScript", "React", "Git", "Python", "Node.js"],
+    "moonfire:frontend-developer-trainee-react-fresher": ["HTML", "CSS", "JavaScript", "React", "Git"]
+  }
+}

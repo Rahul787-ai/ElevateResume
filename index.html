@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ElevateResume — Resume Builder</title>
+  <link rel="stylesheet" href="base.css"><link rel="stylesheet" href="app.css">
+  <script src="core.js" defer></script><script src="xml.js" defer></script><script src="app.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#mainContent">Skip to content</a>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand-mark"><div class="brand-glyph" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6zM14 3v5h4M9 12h6M9 16h6"/></svg></div><div class="brand-text"><h1>ElevateResume</h1><span>Resume workspace</span></div></div>
+    <nav aria-label="Main navigation" id="navigation">
+      <button class="nav-item" data-page="dashboard">Dashboard</button>
+      <button class="nav-item" data-page="builder">Resume Builder</button>
+      <button class="nav-item" data-page="preview">Live Preview</button>
+      <button class="nav-item" data-page="matching">Job Matching</button>
+      <button class="nav-item" data-page="coach">AI Coach</button>
+      <button class="nav-item" data-page="insights">Market Insights</button>
+      <button class="nav-item" data-page="quality">Quality Checklist</button>
+      <button class="nav-item" data-page="export">Export Center</button>
+    </nav>
+    <p class="muted">Your draft stays in this browser. Only confirmed details appear in your resume.</p>
+  </aside>
+  <main class="main" id="mainContent" tabindex="-1">
+    <header class="topbar"><div class="header-title"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v14H4zM4 10h16M9 10v9"/></svg><span id="currentPage">Dashboard</span></div><div class="header-actions"><span id="saveStatus" role="status">Blank draft ready</span><button class="btn-ghost" id="theme" aria-label="Switch to dark theme">Dark theme</button></div></header>
+    <p id="notice" role="status" aria-live="polite"></p>
+    <section class="page active" data-page="dashboard">
+      <div class="page-heading"><h2>Workspace overview</h2><p>Review your progress and choose the next step for your resume.</p></div>
+      <div class="overview-grid">
+        <div class="glass panel"><h3 class="stat-label">Confirmed entries</h3><strong class="stat-value" id="overviewConfirmed">0</strong><p class="muted" id="overviewDrafts">No entries added yet</p></div>
+        <div class="glass panel"><h3 class="stat-label">Quality checklist</h3><strong class="stat-value" id="overviewQuality">0</strong><p class="muted">Items to review, separate from job matching</p></div>
+        <div class="glass panel"><h3 class="stat-label">Contact details</h3><strong class="stat-value" id="overviewContact">Not added</strong><p class="muted">Confirm details before exporting</p></div>
+      </div>
+      <div class="overview-columns"><div class="glass panel"><h3>Continue your resume</h3><p>Add your education, projects and experience, then review the confirmed information in your preview.</p><div class="actions"><button class="btn-primary" data-goto="builder">Open resume builder</button><button class="btn-ghost" data-goto="preview">Review preview</button></div><div class="actions"><button class="btn-ghost" data-goto="matching">Match a job description</button><button class="btn-ghost" data-goto="export">Import or export</button></div><p class="muted">Drafts stay in this browser. Preview and exports include only information you confirm.</p></div><div class="glass panel"><h3>Workspace status</h3><dl class="status-list"><div><dt>AI coach</dt><dd id="overviewAI">API setup pending</dd></div><div><dt>Market sample</dt><dd id="overviewMarket">Loading bundled sample…</dd></div><div><dt>Next step</dt><dd id="overviewNext">Add your contact details.</dd></div></dl><button class="btn-ghost" data-goto="quality">Open quality checklist</button></div></div>
+    </section>
+    <section class="page" data-page="builder">
+      <div class="page-heading"><h2>Resume Builder</h2><p>Enter your own facts, then confirm each section. Editing confirmed details returns that section to draft.</p></div>
+      <div class="work-grid"><div id="editor"></div><aside class="glass panel live-pane"><h3>Live preview</h3><p class="muted">Confirmed information only</p><div id="livePreview" class="resume-paper"></div></aside></div>
+      <div class="glass panel"><h3>Signature</h3><p>Upload your signature as PNG or JPG (up to 5 MB). A tightly cropped image with a white or transparent background works best. It appears at the bottom right after the final resume section.</p><label for="signatureFile">Upload signature image</label><input id="signatureFile" type="file" accept="image/png,image/jpeg"><img id="signatureImage" class="signature-upload-preview" alt="Uploaded signature" hidden><label class="check"><input id="signatureConfirmed" type="checkbox"> Include this signature in my resume and exports.</label><button id="removeSignature" class="btn-ghost" type="button">Remove signature</button><p id="signatureStatus" role="status" aria-live="polite"></p></div>
+      <details class="glass panel"><summary>Separate sample — never added to your resume</summary><p>Fictional example: Alex Student · Web Technologies student</p><p>Project: Campus timetable · “Built a timetable page using HTML and CSS.”</p><p>Use this as a writing example; enter and confirm only your own facts above.</p></details>
+    </section>
+    <section class="page" data-page="preview"><h2>Live Preview</h2><p>Only information you have confirmed appears here.</p><button class="btn-primary print-button">Print / Save as PDF</button><div id="fullPreview" class="resume-paper"></div></section>
+    <section class="page" data-page="matching">
+      <h2>Job-specific matching</h2><div class="glass panel"><label for="job">Paste a job description</label><textarea id="job" rows="9" placeholder="Paste the role's requirements here"></textarea><p class="muted">Matching updates as the job description or confirmed resume changes. Job text stays here unless you explicitly include it in an AI request.</p></div>
+      <div id="matches" class="glass panel" aria-live="polite"></div>
+      <details class="glass panel"><summary>Method and limits</summary><p>Deterministic, case-insensitive JavaScript matches complete skill names and explicit aliases. A recognized mention is not necessarily a mandatory requirement: negation, proficiency, years of experience, importance and context are not inferred. Resume evidence is quoted text from confirmed entries; a mention does not prove proficiency. This is not an ATS score or a guarantee of hiring outcomes.</p><div id="dictionary"></div></details>
+    </section>
+    <section class="page" data-page="coach">
+      <h2>AI bullet coach</h2><p id="aiStatus" role="status">AI coach unavailable—API setup pending.</p>
+      <div class="glass panel"><label for="bulletSelect">Select one project or experience bullet</label><select id="bulletSelect"></select>
+      <div class="comparison"><div><h3>Original text</h3><p id="original" class="quote"></p><label for="facts">Confirmed facts for this bullet</label><textarea id="facts" rows="5" placeholder="State only facts you can verify. These notes are not added to your resume."></textarea></div><div><label for="suggestion">Editable suggestion</label><textarea id="suggestion" rows="9" disabled></textarea></div></div>
+      <label class="check"><input type="checkbox" id="factsConfirmed"> I confirm the original text and facts are accurate.</label>
+      <label class="check"><input type="checkbox" id="includeJob"> Include the current job description as context in this request.</label>
+      <p class="muted">Generate sends only this bullet, your confirmed facts, and optional job text to the configured AI service. Review every claim. No suggestion changes the resume until you approve it.</p>
+      <button class="btn-primary" id="generate" disabled>Generate suggestion</button>
+      <label class="check"><input type="checkbox" id="suggestionConfirmed" disabled> I checked the edited suggestion; it preserves the facts and adds no claims.</label>
+      <div class="actions"><button class="btn-primary" id="approve" disabled>Approve this bullet</button><button class="btn-ghost" id="reject" disabled>Reject suggestion</button></div>
+      <p id="aiFeedback" role="status"></p></div>
+    </section>
+    <section class="page" data-page="insights"><h2>Market Insights</h2><div class="glass panel"><p>Skill frequency in our collected sample. The bundled snapshot was checked against public employer postings by an AI-assisted collector. It is not live data or a representative survey of India.</p><div class="actions"><button class="btn-ghost" id="loadBundledMarket">Reload bundled sample</button><a href="market-sample.json" download>Download collected sample</a></div><label for="marketFile">Import another verified sample JSON</label><input id="marketFile" type="file" accept=".json,application/json"><p><a href="market-format.json" download>Download the required data format</a></p><p class="muted">Verification describes the collector's source-page review, not employer certification or a guarantee that applications remain open. Imports replace the displayed sample for this session. Reloading the bundled file does not collect fresh postings.</p><p id="marketStatus" role="status" aria-live="polite"></p></div><div id="marketResults" class="glass panel" aria-live="polite"></div></section>
+    <section class="page" data-page="quality"><h2>Resume quality checklist</h2><p>Draft completeness and clarity checks, separate from job matching. Optional sections are not required.</p><div id="qualityResults" class="glass panel"></div></section>
+    <section class="page" data-page="export"><h2>Export Center</h2><div class="glass panel"><h3>Confirmed resume</h3><p>XML and print output contain confirmed sections only. Unconfirmed drafts remain saved locally but are excluded from exports.</p><div class="actions"><button class="btn-primary print-button">Print / Save as PDF</button><button class="btn-ghost" id="exportXml">Export XML</button></div></div>
+      <div class="glass panel"><h3>Import XML</h3><p>Import replaces the current draft after validation and your confirmation. Use ElevateResume version 2 XML; malformed or unsupported files leave your draft intact. Review the imported content before confirming it for output.</p><label for="xmlFile">Choose XML file</label><input id="xmlFile" type="file" accept=".xml,application/xml"><div id="importReview" hidden><p id="importSummary"></p><button class="btn-primary" id="confirmImport">Replace draft with reviewed import</button><button class="btn-ghost" id="cancelImport">Cancel import</button></div></div>
+      <div class="glass panel" id="legacyPanel" hidden><h3>Earlier browser draft found</h3><p>The old app included prefilled claims, so these are not loaded automatically. You can recover the saved text as unconfirmed draft entries and check each claim.</p><button class="btn-ghost" id="recoverLegacy">Review earlier draft</button></div>
+    </section>
+  </main>
+</div>
+<div id="print-area" class="resume-paper"></div>
+</body></html>
